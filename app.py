@@ -1,14 +1,16 @@
 from flask import Flask, jsonify, request
 import pyodbc
+import os
+from dotenv import load_dotenv
 
-
+load_dotenv()
 app = Flask(__name__)
 
-server = "moduleexercise.database.windows.net"
-database = 'StudentDB'
-username = 'testuser'
-password = 'Nishant@1234'
-
+server = os.getenv('SERVER')
+database = os.getenv('DATABASE')
+username = os.getenv('DB_USERNAME')
+password = os.getenv('PASSWORD')
+print(server, database, username, password)
 conn = pyodbc.connect(
     f'DRIVER={{ODBC Driver 17 for SQL Server}};'
     f'SERVER={server};'
